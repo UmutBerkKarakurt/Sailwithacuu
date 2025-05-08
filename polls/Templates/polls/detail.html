@@ -1,0 +1,22 @@
+<h2>Anket: {{ question.question_text }}</h2>
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Seçenekler:</legend>
+        {% for choice in question.choice_set.all %}
+            <label style="display: block; margin-bottom: 10px;">
+                <input type="radio" name="choice" value="{{ choice.id }}">
+                👉 {{ choice.choice_text }}
+            </label>
+        {% endfor %}
+    </fieldset>
+    <button type="submit" style="margin-top: 10px;">✅ Oy Ver</button>
+</form>
+
+{% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+{% endif %}
+
+<br>
+<a href="{% url 'polls:index' %}">⬅️ Anasayfaya Dön</a>
