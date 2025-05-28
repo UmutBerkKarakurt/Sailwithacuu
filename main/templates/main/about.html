@@ -1,0 +1,228 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Biz Kimiz - SailWithAcu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-image: url("{% static 'polls/images/background.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+        }
+        header {
+            background: url("{% static 'polls/images/race10.jpg' %}") center/cover no-repeat;
+            background-position: center 40%;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+        }
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,31,63,0.6);
+        }
+        header h1 {
+            position: relative;
+            font-size: 40px;
+            z-index: 1;
+        }
+        .nav-bar {
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-bar a {
+            text-decoration: none;
+            color: #001f3f;
+            font-weight: bold;
+            transition: color 0.3s;
+            padding: 10px 15px;
+        }
+        .nav-bar a:hover {
+            color: #555555;
+        }
+        .dropdown {
+            position: relative;
+            text-align: center;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 8px;
+            margin-top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .dropdown-content a {
+            color: #001f3f;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-weight: bold;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .section {
+            background-color: rgba(255,255,255,0.95);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            color: #001f3f;
+        }
+        .section h2 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+        .section p {
+            line-height: 1.6;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .team-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            color: #001f3f;
+            padding: 10px;
+            transition: transform 0.3s;
+        }
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+        .team-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .team-card p.name {
+            margin: 10px 0 5px 0;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .team-card p.role {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Biz Kimiz</h1>
+</header>
+
+<div class="nav-bar">
+    <a href="/">Ana Sayfa</a>
+    <a href="/about/">Biz Kimiz?</a>
+    <a href="/races/">Yarışlarımız</a>
+    <div class="dropdown">
+        <a href="#">Eğitimlerimiz ▼</a>
+        <div class="dropdown-content">
+            <a href="/theory/">Teorik Eğitimlerimiz</a>
+            <a href="/practice/">Pratik Eğitimlerimiz</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <a href="#">Aramıza Katılın ▼</a>
+        <div class="dropdown-content">
+            <a href="/signup/">Kayıt Ol</a>
+            <a href="/practice/">Giriş Yap</a>
+        </div>
+    </div>
+</div>
+
+<main>
+    <div class="section">
+        <h2>🌊 SailWithAcu Kimdir?</h2>
+        <p>
+            SailWithAcu, Acıbadem Üniversitesi Yelken Kulübü olarak yıllardır denizlerin tutkusunu kampüsümüze taşıyor.
+            Hem sosyal hem rekabetçi alanda üniversitemizi temsil eden takımımız, pek çok ulusal ve uluslararası yarışmada
+            sayısız başarı elde etti. Ekip ruhu, liderlik ve yelken sevgisi bizi bir araya getiren en önemli unsurlar.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>👥 Yönetim Ekibi</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="{% static 'polls/images/doga.jpg' %}" alt="Doğa">
+                <p class="name">Doğa Karaburun</p>
+                <p class="role">Kulüp Başkanı</p>
+            </div>
+            <div class="team-card">
+                <img src="{% static 'polls/images/yarkin.jpg' %}" alt="Yarkın">
+                <p class="name">Yarkın Duman</p>
+                <p class="role">Yarış Takımı Kaptanı</p>
+            </div>
+            <div class="team-card">
+                <img src="{% static 'polls/images/umut.jpg' %}" alt="Umut">
+                <p class="name">Umut Berk Karakurt</p>
+                <p class="role">Mali İşler Sorumlusu</p>
+            </div>
+            <div class="team-card">
+                <img src="{% static 'polls/images/berya.jpg' %}" alt="Berya">
+                <p class="name">Berya Koç</p>
+                <p class="role">Sponsor Sorumlusu</p>
+            </div>
+            <div class="team-card">
+                <img src="{% static 'polls/images/atakan.jpg' %}" alt="Atakan">
+                <p class="name">Atakan Yılmaz</p>
+                <p class="role">Başkan Yardımcısı</p>
+            </div>
+            <div class="team-card">
+                <img src="{% static 'polls/images/almira.jpg' %}" alt="Almira">
+                <p class="name">Almira Belsan</p>
+                <p class="role">Organizasyon Sorumlusu</p>
+            </div>
+        </div>
+    </div>
+</main>
+<footer style="background-color: #001f3f; color: white; padding: 30px 20px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+    <img src="{% static 'polls/images/logo.png' %}" alt="SailWithAcu Logo" style="max-width: 120px; margin-right: 30px;">
+    <div style="max-width: 400px;">
+        <h3 style="margin: 0 0 10px 0; font-size: 20px;">Acıbadem Üniversitesi Yelken Kulübü</h3>
+        <p style="margin: 5px 0; font-size: 14px;">📍 Adres: Kayışdağı Cad. No:32 Ataşehir/İSTANBUL</p>
+        <p style="margin: 5px 0; font-size: 14px;">📞 Telefon: +90 212 123 45 67</p>
+        <p style="margin: 5px 0; font-size: 14px;">✉️ E-posta: acusailing@acibadem.edu.tr</p>
+    </div>
+</footer>
+</body>
+</html>

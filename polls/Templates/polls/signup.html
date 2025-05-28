@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kayıt Ol - SailWithAcu</title>
+</head>
+<body style="text-align: center; padding-top: 50px;">
+    <h2>🧭 Kayıt Ol</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Kayıt Ol</button>
+    </form>
+    <br>
+    <a href="{% url 'main:home' %}">⬅️ Anasayfaya Dön</a>
+</body>
+</html>

@@ -1,17 +1,28 @@
-<h1>SailWithAcu | Anketler</h1>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Anketler | SailWithAcu</title>
+</head>
+<body style="text-align: center; padding-top: 50px;">
 
-<a href="{% url 'polls:about' %}">📘 Hakkımızda</a>
+    <h1>🗳️ Anketler</h1>
 
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li>
-            <a href="{% url 'polls:detail' question.id %}">
-                {{ question.question_text }}
-            </a>
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>Şu anda aktif bir anket yok.</p>
-{% endif %}
+    {% if latest_question_list %}
+        <ul style="list-style: none; padding: 0;">
+        {% for question in latest_question_list %}
+            <li style="margin: 10px 0;">
+            <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Şu anda aktif bir anket bulunmamaktadır.</p>
+    {% endif %}
+
+    <br><br>
+    <a href="{% url 'polls:home' %}">⬅️ Anasayfaya Dön</a>
+
+</body>
+</html>
+

@@ -1,0 +1,300 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Yarışlarımız - SailWithAcu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-image: url("{% static 'polls/images/background.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+        }
+        header {
+            background: url("{% static 'polls/images/race11.jpg' %}") center/cover no-repeat;
+            background-position: center 60%;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+        }
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,31,63,0.6);
+        }
+        header h1 {
+            position: relative;
+            font-size: 40px;
+            z-index: 1;
+        }
+        .nav-bar {
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-bar a {
+            text-decoration: none;
+            color: #001f3f;
+            font-weight: bold;
+            transition: color 0.3s;
+            padding: 10px 15px;
+        }
+        .nav-bar a:hover {
+            color: #555555;
+        }
+        .dropdown {
+            position: relative;
+            text-align: center;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 8px;
+            margin-top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .dropdown-content a {
+            color: #001f3f;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-weight: bold;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        main {
+            padding: 30px;
+            text-align: center;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+            margin: 0 auto;
+            max-width: 1575px;
+        }
+        .card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            background-color: rgba(0, 31, 63, 0.9);
+        }
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+        .overlay {
+            padding: 10px;
+            text-align: center;
+        }
+        .overlay h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .overlay button {
+            margin-top: 8px;
+            padding: 6px 12px;
+            background-color: white;
+            color: #001f3f;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .overlay button:hover {
+            background-color: #cccccc;
+        }
+        .extra-info {
+            max-height: 0;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.95);
+            color: #001f3f;
+            padding: 0 10px;
+            text-align: left;
+            transition: max-height 0.7s ease, padding 0.3s ease, opacity 0.7s ease;
+            opacity: 0;
+            margin-top: 5px;
+            border-radius: 0 0 15px 15px;
+            font-size: 14px;
+        }
+        .extra-info.show {
+            max-height: 300px;
+            padding: 10px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Yarışlarımız</h1>
+</header>
+
+<div class="nav-bar">
+    <a href="/">Ana Sayfa</a>
+    <a href="/about/">Biz Kimiz?</a>
+    <a href="/races/">Yarışlarımız</a>
+    <div class="dropdown">
+        <a href="#">Eğitimlerimiz ▼</a>
+        <div class="dropdown-content">
+            <a href="/theory/">Teorik Eğitimlerimiz</a>
+            <a href="/practice/">Pratik Eğitimlerimiz</a>
+        </div>
+    </div>
+        <div class="dropdown">
+        <a href="#">Aramıza Katılın ▼</a>
+        <div class="dropdown-content">
+            <a href="/signup/">Kayıt Ol</a>
+            <a href="/practice/">Giriş Yap</a>
+        </div>
+    </div>
+</div>
+
+<main>
+    <div class="grid">
+        <!-- İlk 4 kart -->
+        <div>
+            <div class="card">
+                <img src="{% static 'polls/images/race1.jpg' %}" alt="Race 1">
+                <div class="overlay">
+                    <h2>Campus Cup 25'</h2>
+                    <button onclick="toggleInfo(1)">Devamını Oku</button>
+                </div>
+            </div>
+            <div class="extra-info" id="info-1">
+                🏆Campus Cup, üniversite yelken takımlarının katıldığı ve gençleri yelkene teşvik eden önemli bir organizasyondur. Ekibimiz, ORC-B sınıfında başarılı bir performans sergileyerek üçüncülük elde etmiştir.
+            </div>
+        </div>
+        <div>
+            <div class="card">
+                <img src="{% static 'polls/images/race2.jpeg' %}" alt="Race 2">
+                <div class="overlay">
+                    <h2>Jimmy Key 25'</h2>
+                    <button onclick="toggleInfo(2)">Devamını Oku</button>
+                </div>
+            </div>
+            <div class="extra-info" id="info-2">
+                🌊 Jimmy Key sponsorluğunda Urla’da yarışan ekibimiz, IRC-4 sınıfında başarılı bir performans sergileyerek üçüncülük elde etti
+            </div>
+        </div>
+        <div>
+            <div class="card">
+                <img src="{% static 'polls/images/race3.jpeg' %}" alt="Race 3">
+                <div class="overlay">
+                    <h2>Tezmarin 25'</h2>
+                    <button onclick="toggleInfo(3)">Devamını Oku</button>
+                </div>
+            </div>
+            <div class="extra-info" id="info-3">
+                🌪️ Ekibimizin 7 saatlik zorlu mücadelesinin ardından, hava koşulları nedeniyle yarış abondone (iptal) edildi.
+            </div>
+        </div>
+        <div>
+            <div class="card">
+                <img src="{% static 'polls/images/race4.jpg' %}" alt="Race 4">
+                <div class="overlay">
+                    <h2>Bosphorus Cup 25'</h2>
+                    <button onclick="toggleInfo(4)">Devamını Oku</button>
+                </div>
+            </div>
+            <div class="extra-info" id="info-4">
+                👋 Dünyanın dört bir yanından teknelerin katıldığı Boğaz yarışında, ekibimiz ikincilik başarısı gösterdi.
+            </div>
+        </div>
+        <!-- Yeni 4 kart -->
+        <div>
+            <div class="card">
+                <img src="{% static 'polls/images/race5.jpg' %}" alt="Race 5">
+                <div class="overlay">
+                    <h2>Cumhuriyet Kupası 24'</h2>
+                    <button onclick="toggleInfo(5)">Devamını Oku</button>
+                </div>
+            </div>
+            <div class="extra-info" id="info-5">
+                🛥️Cumhuriyet Kupası’nda, gezgin ve üniversite kategorisinde ekibimiz üçüncülük elde etti.
+            </div>
+        </div>
+        <div>
+            <div class="card">
+                <img src="{% static 'polls/images/race6.jpg' %}" alt="Race 6">
+                <div class="overlay">
+                    <h2>23 Nisan Kupası 24'</h2>
+                    <button onclick="toggleInfo(6)">Devamını Oku</button>
+                </div>
+            </div>
+            <div class="extra-info" id="info-6">
+                🛥️23 Nisan Ulusal Egemenlik ve Çocuk Bayramı’nda, üniversite kategorisi sınıfında ekibimiz birincilik kazandı.
+            </div>
+        </div>
+        <div>
+            <div class="card">
+                <img src="{% static 'polls/images/race7.jpg' %}" alt="Race 7">
+                <div class="overlay">
+                    <h2>Campus Cup 24'</h2>
+                    <button onclick="toggleInfo(7)">Devamını Oku</button>
+                </div>
+            </div>
+            <div class="extra-info" id="info-7">
+                🛥️Campus Cup, üniversite yelken takımlarının katıldığı ve gençleri yelkene teşvik eden önemli bir organizasyondur. Ekibimiz, ORC-B sınıfında başarılı bir performans sergileyerek üçüncülük elde etmiştir.
+            </div>
+        </div>
+        <div>
+            <div class="card">
+                <img src="{% static 'polls/images/race8.jpg' %}" alt="Race 8">
+                <div class="overlay">
+                    <h2>Jimmy Key 24'</h2>
+                    <button onclick="toggleInfo(8)">Devamını Oku</button>
+                </div>
+            </div>
+            <div class="extra-info" id="info-8">
+                🛥️ 🌊 Jimmy Key sponsorluğunda Urla’da yarışan ekibimiz, IRC-4 sınıfında başarılı bir performans sergileyerek üçüncülük elde etti
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    function toggleInfo(id) {
+        const infoBox = document.getElementById(`info-${id}`);
+        infoBox.classList.toggle('show');
+    }
+</script>
+<footer style="background-color: #001f3f; color: white; padding: 30px 20px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+    <img src="{% static 'polls/images/logo.png' %}" alt="SailWithAcu Logo" style="max-width: 120px; margin-right: 30px;">
+    <div style="max-width: 400px;">
+        <h3 style="margin: 0 0 10px 0; font-size: 20px;">Acıbadem Üniversitesi Yelken Kulübü</h3>
+        <p style="margin: 5px 0; font-size: 14px;">📍 Adres: Kayışdağı Cad. No:32 Ataşehir/İSTANBUL</p>
+        <p style="margin: 5px 0; font-size: 14px;">📞 Telefon: +90 212 123 45 67</p>
+        <p style="margin: 5px 0; font-size: 14px;">✉️ E-posta: acusailing@acibadem.edu.tr</p>
+    </div>
+</footer>
+</body>
+</html>

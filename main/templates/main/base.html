@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}SailWithAcu{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+        }
+        footer {
+            background-color: #001f3f;
+            color: white;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .footer-logo {
+            max-width: 120px;
+            margin-right: 30px;
+        }
+        .footer-info {
+            max-width: 400px;
+        }
+        .footer-info h3 {
+            margin: 0 0 10px 0;
+            font-size: 20px;
+        }
+        .footer-info p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+{% block content %}
+{% endblock %}
+
+<footer>
+    <img src="{% static 'polls/images/logo.png' %}" alt="SailWithAcu Logo" class="footer-logo">
+    <div class="footer-info">
+        <h3>Acıbadem Üniversitesi Yelken Kulübü</h3>
+        <p>📍 Adres: Acıbadem Mahallesi, Üniversite Sokak No:1, İstanbul</p>
+        <p>📞 Telefon: +90 212 123 45 67</p>
+        <p>✉️ E-posta: yelkenkulubu@acibadem.edu.tr</p>
+    </div>
+</footer>
+
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>

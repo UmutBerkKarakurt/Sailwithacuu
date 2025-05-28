@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kayıt Ol - SailWithAcu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #001f3f, #0074D9);
+            color: white;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        .nav-bar {
+            background-color: white;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 10px 40px;
+        }
+        .nav-bar a, .dropdown {
+            text-align: center;
+            text-decoration: none;
+            color: #001f3f;
+            font-weight: bold;
+            transition: color 0.3s;
+            padding: 10px 15px;
+            position: relative;
+        }
+        .nav-bar a:hover, .dropdown:hover > a {
+            color: #555555;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            margin-top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .dropdown-content a {
+            color: #001f3f;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-weight: bold;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .signup-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            width: 100%;
+            max-width: 400px;
+        }
+        .signup-box h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .signup-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+        }
+        .signup-box button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: white;
+            color: #001f3f;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .signup-box button:hover {
+            background-color: #cccccc;
+        }
+
+        footer {
+            background-color: #001f3f;
+            color: white;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .footer-info {
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav-bar">
+    <a href="/">Ana Sayfa</a>
+    <a href="/about/">Biz Kimiz?</a>
+    <a href="/races/">Yarışlarımız</a>
+    <div class="dropdown">
+        <a href="#">Eğitimlerimiz ▼</a>
+        <div class="dropdown-content">
+            <a href="/theory/">Teorik Eğitimlerimiz</a>
+            <a href="/practice/">Pratik Eğitimlerimiz</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <a href="#">Aramıza Katılın ▼</a>
+        <div class="dropdown-content">
+            <a href="/signup/">Kayıt Ol</a>
+            <a href="/login/">Giriş Yap</a>
+        </div>
+    </div>
+</div>
+
+<main>
+    <div class="signup-box">
+        <h1>Kayıt Ol</h1>
+        <form>
+            <input type="text" placeholder="Kullanıcı Adı">
+            <input type="text" placeholder="Okul Numaranız">
+            <input type="password" placeholder="Şifre">
+            <button type="submit">Kayıt Ol</button>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <img src="{% static 'polls/images/logo.png' %}" alt="SailWithAcu Logo" style="max-width: 120px; margin-right: 20px;">
+    <div class="footer-info">
+        <h3 style="margin: 0 0 10px 0; font-size: 20px;">Acıbadem Üniversitesi Yelken Kulübü</h3>
+        <p style="margin: 5px 0; font-size: 14px;">📍 Adres: Kayışdağı Cad. No:32 Ataşehir/İSTANBUL</p>
+        <p style="margin: 5px 0; font-size: 14px;">📞 Telefon: +90 212 123 45 67</p>
+        <p style="margin: 5px 0; font-size: 14px;">✉️ E-posta: acusailing@acibadem.edu.tr</p>
+    </div>
+</footer>
+
+</body>
+</html>
