@@ -20,8 +20,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main',    # ana uygulaman
-    'polls',   # polls uygulaman
+    'accounts',
+    'main',
+    'polls',
 ]
 
 MIDDLEWARE = [

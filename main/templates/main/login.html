@@ -3,18 +3,19 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Kayıt Ol - SailWithAcu</title>
+    <title>Giriş Yap - SailWithAcu</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         html, body {
-            height: 100%;
             margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
+            height: 100%;
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #001f3f, #0074D9);
             color: white;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
         }
         .nav-bar {
             background-color: white;
@@ -24,11 +25,12 @@
             padding: 10px 40px;
         }
         .nav-bar a, .dropdown {
+            text-align: center;
             text-decoration: none;
             color: #001f3f;
             font-weight: bold;
-            padding: 10px 15px;
             transition: color 0.3s;
+            padding: 10px 15px;
             position: relative;
         }
         .nav-bar a:hover, .dropdown:hover > a {
@@ -39,18 +41,18 @@
             position: absolute;
             background-color: white;
             min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
             border-radius: 8px;
-            top: 100%;
+            margin-top: 10px;
             left: 50%;
             transform: translateX(-50%);
         }
         .dropdown-content a {
-            display: block;
-            padding: 12px 16px;
             color: #001f3f;
-            font-weight: bold;
+            padding: 12px 16px;
             text-decoration: none;
+            display: block;
+            font-weight: bold;
         }
         .dropdown-content a:hover {
             background-color: #f1f1f1;
@@ -58,14 +60,14 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
+
         main {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px 20px;
         }
-        .signup-box {
+        .login-box {
             background-color: rgba(255, 255, 255, 0.1);
             padding: 40px;
             border-radius: 15px;
@@ -73,36 +75,18 @@
             width: 100%;
             max-width: 400px;
         }
-        .signup-box h1 {
+        .login-box h1 {
             text-align: center;
             margin-bottom: 20px;
         }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-        }
-        .form-group input {
+        .login-box form input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
+            margin: 10px 0;
             border: none;
             border-radius: 8px;
         }
-        .form-group small {
-            display: block;
-            margin-top: 6px;
-            font-size: 12px;
-            color: lightgray;
-        }
-        .form-group .error {
-            color: red;
-            margin-top: 4px;
-            font-size: 12px;
-        }
-        button {
+        .login-box button {
             width: 100%;
             padding: 12px;
             border: none;
@@ -113,28 +97,21 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        button:hover {
+        .login-box button:hover {
             background-color: #cccccc;
         }
+
         footer {
             background-color: #001f3f;
             color: white;
-            padding: 15px 10px;
-            text-align: center;
-            font-size: 12px;
-            margin-top: auto;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
         }
-        .footer-info img {
-            max-width: 80px;
-            margin-bottom: 5px;
-        }
-        .footer-info h3 {
-            margin: 5px 0;
-            font-size: 16px;
-        }
-        .footer-info p {
-            margin: 2px 0;
-            font-size: 12px;
+        .footer-info {
+            max-width: 400px;
         }
     </style>
 </head>
@@ -161,41 +138,28 @@
 </div>
 
 <main>
-    <div class="signup-box">
-        <h1>Kayıt Ol</h1>
+    <div class="login-box">
+        <h1>Giriş Yap</h1>
         <form method="post">
             {% csrf_token %}
-
-            <div class="form-group">
-                <label for="id_name">Kullanıcı Adı</label>
-                <input type="text" name="name" id="id_name" placeholder="Kullanıcı adınızı girin">
-                <small>Kullanıcı adınızı girin. Harf veya rakam olabilir.</small>
-            </div>
-
-            <div class="form-group">
-                <label for="id_email">E-posta</label>
-                <input type="email" name="email" id="id_email" placeholder="isim@mail.com">
-                <small>Aktif bir e-posta adresi girin.</small>
-            </div>
-
-            <div class="form-group">
-                <label for="id_password">Şifre</label>
-                <input type="password" name="password" id="id_password" placeholder="Şifrenizi girin">
-                <small>Şifreniz en az 8 karakter uzunluğunda olsun.</small>
-            </div>
-
-            <button type="submit">Kayıt Ol</button>
+            {{ form.as_p }}
+            <button type="submit">Giriş Yap</button>
         </form>
+        {% if error %}
+            <div style="color: red; margin-top: 10px;">
+                {{ error }}
+            </div>
+        {% endif %}
     </div>
 </main>
 
 <footer>
+    <img src="{% static 'polls/images/logo.png' %}" alt="SailWithAcu Logo" style="max-width: 120px; margin-right: 20px;">
     <div class="footer-info">
-        <img src="{% static 'polls/images/logo.png' %}" alt="SailWithAcu Logo">
-        <h3>Acıbadem Üniversitesi Yelken Kulübü</h3>
-        <p>📍 Kayışdağı Cad. No:32 Ataşehir/İSTANBUL</p>
-        <p>📞 +90 212 123 45 67</p>
-        <p>✉️ acusailing@acibadem.edu.tr</p>
+        <h3 style="margin: 0 0 10px 0; font-size: 20px;">Acıbadem Üniversitesi Yelken Kulübü</h3>
+        <p style="margin: 5px 0; font-size: 14px;">📍 Adres: Kayışdağı Cad. No:32 Ataşehir/İSTANBUL</p>
+        <p style="margin: 5px 0; font-size: 14px;">📞 Telefon: +90 212 123 45 67</p>
+        <p style="margin: 5px 0; font-size: 14px;">✉️ E-posta: acusailing@acibadem.edu.tr</p>
     </div>
 </footer>
 
